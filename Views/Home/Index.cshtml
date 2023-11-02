@@ -1,0 +1,55 @@
+﻿@model HCIHelp.Models.ComplaintModel
+@{
+    ViewData["Title"] = "Home Page";
+}
+
+<html>
+<head>
+    <meta charset="utf-8" />
+    <title>@ViewBag.Title</title>
+    <link href="@Url.Content("~/Site.css")" rel="stylesheet" type="text/css" />
+</head>
+
+<div><p style="color:red">Please ensure that your complaints are strictly related to the following natural disasters: **Earthquakes**, **Tornadoes**, **Floods**, **Wildfires**, and **Droughts**.</p></div>
+
+
+@using (Html.BeginForm("UploadData", "Home", FormMethod.Post, new { enctype = "multipart/form-data" }))
+{
+    <div class="form-group">
+       
+        <input asp-for="Name" class="feedback-input" placeholder="Your Name" required="true" />
+        <span asp-validation-for="Name"></span>
+    </div>
+    <div class="form-group">
+       
+        <input asp-for="Email" class="feedback-input" placeholder="Your Email" required="true" />
+        <span asp-validation-for="Email"></span>
+    </div>
+    <div>    
+   
+        
+        <textarea rows="10" cols="60" asp-for="Complaint" spellcheck="true" placeholder="Your Complaint" required="true"></textarea>
+       
+    </div>
+    <div class="form-group">
+        @Html.LabelFor(model => model.files, htmlAttributes: new { @class = "control-label col-md-6" })
+        <div class="col-md-10">
+            @Html.TextBoxFor(model => model.files, "", new { @type = "file", @multiple = "multiple" })
+            @Html.ValidationMessageFor(model => model.files, "", new { @class = "text-danger" })
+        </div>
+    </div>
+
+
+    <div>
+      
+    </div>
+
+    <br />
+    <br />
+
+    <div></div>
+    <div></div>
+    <div>
+        <button type="submit">Submit</button>
+    </div>
+}

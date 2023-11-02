@@ -1,0 +1,7 @@
+services:
+  web_app:
+    container_name: GCDemo
+    build: .
+    ports:
+      - "8080:80"
+    
